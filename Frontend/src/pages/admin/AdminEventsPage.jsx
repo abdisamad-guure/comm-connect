@@ -1,0 +1,16 @@
+import { useCallback, useEffect, useState } from 'react';
+import { FiEdit2, FiPlus, FiTrash2, FiUsers } from 'react-icons/fi';
+import Modal from '../../components/Modal';
+import { EmptyState, ErrorState, LoadingState } from '../../components/AsyncState';
+import EventForm from '../../components/forms/EventForm';
+import { eventService } from '../../services/events';
+import { formatEventDate, getErrorMessage } from '../../utils/formatters';
+
+export default function AdminEventsPage() {
+  const [events, setEvents] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState(''); const [editor, setEditor] = useState(null);
+  const loadEvents = useCallback(async () => { setLoading(true); setError(''); try { const response = await eventService.list({ limit: 100 }); setEvents(response.data.events); } catch (requestError) { setError(getErrorMessage(requestError)); } finally { setLoading(false); } }, []);
+  useEffect(() => { loadEvents(); }, [loadEvents]);
+  async function save(payload) { if (editor?.event) await eventService.update(editor.event._id, payload); else await eventService.create(payload); setEditor(null); await loadEvents(); }
+  async function remove(event) { if (!window.confirm(`Delete “${event.title}”?`)) return; try { await eventService.remove(event._id); setEvents((current) => current.filter((item) => item._id !== event._id)); } catch (requestError) { setError(getErrorMessage(requestError)); } }
+  return <div><div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700">Programming</p><h2 className="mt-2 text-3xl font-bold text-slate-900">Events</h2><p className="mt-2 text-slate-600">Plan local gatherings and keep event details accurate.</p></div><button className="button-primary" onClick={() => setEditor({ event: null })}><FiPlus /> Create event</button></div>{loading ? <LoadingState label="Loading events..." /> : error ? <ErrorState message={error} onRetry={loadEvents} /> : events.length ? <div className="space-y-3">{events.map((event) => <article className="surface p-5" key={event._id}><div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"><div><p className="text-sm font-semibold text-teal-700">{formatEventDate(event.date, event.time)}</p><h3 className="mt-1 font-bold text-slate-900">{event.title}</h3><p className="mt-2 text-sm text-slate-600">{event.location} · <span className="inline-flex items-center gap-1"><FiUsers />{event.attendees?.length || 0}</span></p></div><div className="flex gap-2"><button className="button-secondary !p-2.5" onClick={() => setEditor({ event })} aria-label="Edit event"><FiEdit2 /></button><button className="rounded-lg border border-rose-200 p-2.5 text-rose-700 hover:bg-rose-50" onClick={() => remove(event)} aria-label="Delete event"><FiTrash2 /></button></div></div></article>)}</div> : <EmptyState title="No events created" message="Create the first community event." action={<button className="button-primary" onClick={() => setEditor({ event: null })}>Create event</button>} />}{editor && <Modal title={editor.event ? 'Edit event' : 'Create event'} onClose={() => setEditor(null)}><EventForm event={editor.event} onSubmit={save} onCancel={() => setEditor(null)} /></Modal>}</div>;
+}

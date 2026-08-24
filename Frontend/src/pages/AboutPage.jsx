@@ -1,0 +1,8 @@
+import { FiCalendar, FiHeart, FiMessageCircle, FiShield } from 'react-icons/fi';
+import PageHeader from '../components/PageHeader';
+
+const values = [[FiMessageCircle, 'Stay informed', 'Find neighbourhood updates, questions, and useful local knowledge in one shared place.'], [FiCalendar, 'Get involved', 'Discover events that make it easier to meet people and contribute to community life.'], [FiShield, 'Raise concerns', 'Report issues clearly and follow their progress without wondering where they stand.'], [FiHeart, 'Build belonging', 'Small helpful actions and conversations add up to a more connected community.']];
+
+export default function AboutPage() {
+  return <div className="page-container max-w-5xl"><PageHeader eyebrow="About the platform" title="Built for stronger neighbourhoods" description="Community Connect gives residents a clear, welcoming place to share information and turn local attention into action." /><div className="surface overflow-hidden"><div className="bg-teal-800 p-8 text-white sm:p-12"><h2 className="max-w-3xl text-3xl font-bold leading-tight">A community works best when it is easy for people to hear from one another.</h2><p className="mt-5 max-w-2xl leading-7 text-teal-100">This platform is designed for practical local communication: what is happening, what needs attention, and where people can take part.</p></div><div className="grid gap-px bg-slate-200 sm:grid-cols-2">{values.map(([Icon, title, description]) => <article className="bg-white p-6" key={title}><Icon className="text-2xl text-teal-700" /><h3 className="mt-4 font-bold text-slate-900">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{description}</p></article>)}</div></div></div>;
+}
