@@ -5,6 +5,9 @@ import { FiArrowRight, FiLock, FiMail, FiUser } from 'react-icons/fi';
 import { useAuth } from '../hooks/useAuth';
 import { getErrorMessage } from '../utils/formatters';
 
+
+
+
 export default function AuthPage({ mode }) {
   const isRegister = mode === 'register';
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
