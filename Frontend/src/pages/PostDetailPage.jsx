@@ -11,6 +11,7 @@ import { commentService } from '../services/comments';
 import { getMediaUrl } from '../services/api';
 import { postService } from '../services/posts';
 import { formatDate, getErrorMessage, isOwner } from '../utils/formatters';
+           
 
 export default function PostDetailPage() {
   const { postId } = useParams();
