@@ -3,6 +3,8 @@ const ApiError = require('../utils/apiError');
 const asyncHandler = require('../utils/asyncHandler');
 const createToken = require('../utils/token');
 
+
+
 function sendAuthenticationResponse(res, user, statusCode, message) {
   const token = createToken(user._id);
   res.status(statusCode).json({ success: true, message, data: { user, token } });
