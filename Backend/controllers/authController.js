@@ -3,6 +3,8 @@ const ApiError = require('../utils/apiError');
 const asyncHandler = require('../utils/asyncHandler');
 const createToken = require('../utils/token');
 
+
+
 function sendAuthenticationResponse(res, user, statusCode, message) {
   const token = createToken(user._id);
   res.status(statusCode).json({ success: true, message, data: { user, token } });
@@ -41,7 +43,6 @@ const updateProfile = asyncHandler(async (req, res) => {
     if (req.body[field] !== undefined) updates[field] = req.body[field];
   }
   if (req.file) updates.profileImage = `/uploads/${req.file.filename}`;
-
   if (!Object.keys(updates).length) {
     throw new ApiError(400, 'Provide at least one profile field to update');
   }

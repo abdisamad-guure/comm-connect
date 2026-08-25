@@ -12,7 +12,11 @@ import { postService } from '../services/posts';
 import { reportService } from '../services/reports';
 import { formatEventDate, formatDate, getErrorMessage } from '../utils/formatters';
 
+
+
 function attendeeId(attendee) { return typeof attendee === 'object' ? attendee._id : attendee; }
+
+
 
 export default function ProfilePage() {
   const { user, refreshUser } = useAuth(); const [state, setState] = useState({ loading: true, error: '', posts: [], reports: [], events: [] }); const [editing, setEditing] = useState(false); const [success, setSuccess] = useState('');

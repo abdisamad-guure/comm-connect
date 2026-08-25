@@ -3,6 +3,8 @@ const ApiError = require('../utils/apiError');
 const asyncHandler = require('../utils/asyncHandler');
 const { getPagination, getPaginationMeta } = require('../utils/pagination');
 
+
+
 const listNotifications = asyncHandler(async (req, res) => {
   const { page, limit, skip } = getPagination(req.query);
   const filter = { recipient: req.user._id };
@@ -18,8 +20,7 @@ const listNotifications = asyncHandler(async (req, res) => {
       .populate('comment', 'content hidden author post'),
     Notification.countDocuments(filter),
   ]);
-
-  res.json({ success: true, data: { notifications }, meta: getPaginationMeta(page, limit, total) });
+  res.json({ success: true, dta: { notifications }, meta: getPaginationMeta(page, limit, total) });
 });
 
 

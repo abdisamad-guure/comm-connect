@@ -9,6 +9,8 @@ import { eventService } from '../services/events';
 import { postService } from '../services/posts';
 import { formatDate } from '../utils/formatters';
 
+
+
 export default function HomePage() {
   const [state, setState] = useState({ loading: true, error: '', posts: [], events: [], announcements: [], stats: {} });
   const loadHome = useCallback(async () => {
