@@ -41,7 +41,6 @@ const updateProfile = asyncHandler(async (req, res) => {
     if (req.body[field] !== undefined) updates[field] = req.body[field];
   }
   if (req.file) updates.profileImage = `/uploads/${req.file.filename}`;
-
   if (!Object.keys(updates).length) {
     throw new ApiError(400, 'Provide at least one profile field to update');
   }
