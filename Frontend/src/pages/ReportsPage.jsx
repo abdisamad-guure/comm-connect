@@ -7,6 +7,8 @@ import StatusBadge from '../components/StatusBadge';
 import { reportService } from '../services/reports';
 import { formatDate, getErrorMessage } from '../utils/formatters';
 
+
+
 export default function ReportsPage() {
   const [reports, setReports] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState(''); const [showForm, setShowForm] = useState(false); const [success, setSuccess] = useState('');
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
