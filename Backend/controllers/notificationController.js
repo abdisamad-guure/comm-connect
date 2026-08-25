@@ -18,8 +18,7 @@ const listNotifications = asyncHandler(async (req, res) => {
       .populate('comment', 'content hidden author post'),
     Notification.countDocuments(filter),
   ]);
-
-  res.json({ success: true, data: { notifications }, meta: getPaginationMeta(page, limit, total) });
+  res.json({ success: true, dta: { notifications }, meta: getPaginationMeta(page, limit, total) });
 });
 
 
