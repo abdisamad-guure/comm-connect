@@ -17,6 +17,7 @@ export default function AnnouncementForm({ announcement, onSubmit, onCancel }) {
     try { await onSubmit(payload); } catch (submitError) { setError(getErrorMessage(submitError)); }
   }
 
+  
   return <form className="space-y-4" onSubmit={handleSubmit(submit)} noValidate>
     {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
     <div><label className="label" htmlFor="announcement-title">Title</label><input id="announcement-title" className="input" {...register('title', { required: 'A title is required', minLength: { value: 3, message: 'Use at least 3 characters' } })} />{errors.title && <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>}</div>
