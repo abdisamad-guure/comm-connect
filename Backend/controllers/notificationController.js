@@ -22,6 +22,8 @@ const listNotifications = asyncHandler(async (req, res) => {
   res.json({ success: true, data: { notifications }, meta: getPaginationMeta(page, limit, total) });
 });
 
+
+
 const markNotificationRead = asyncHandler(async (req, res) => {
   const notification = await Notification.findOneAndUpdate(
     { _id: req.params.notificationId, recipient: req.user._id },
