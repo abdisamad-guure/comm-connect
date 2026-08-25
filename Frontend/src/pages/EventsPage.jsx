@@ -5,6 +5,8 @@ import PageHeader from '../components/PageHeader';
 import { eventService } from '../services/events';
 import { getErrorMessage } from '../utils/formatters';
 
+
+
 export default function EventsPage() {
   const [events, setEvents] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState('');
   const loadEvents = useCallback(async () => { setLoading(true); setError(''); try { const response = await eventService.list({ limit: 100, upcoming: true }); setEvents(response.data.events); } catch (requestError) { setError(getErrorMessage(requestError)); } finally { setLoading(false); } }, []);
