@@ -9,6 +9,8 @@ export function LoadingState({ label = 'Loading...' }) {
   );
 }
 
+
+
 export function ErrorState({ message, onRetry }) {
   return (
     <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-800">
