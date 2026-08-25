@@ -30,6 +30,7 @@ const logout = asyncHandler(async (_req, res) => {
   res.json({ success: true, message: 'Logout successful. Remove the token from the client.' });
 });
 
+
 const getCurrentUser = asyncHandler(async (req, res) => {
   res.json({ success: true, data: { user: req.user } });
 });
