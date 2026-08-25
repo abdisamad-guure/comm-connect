@@ -7,11 +7,6 @@ import { announcementService } from '../services/announcements';
 import { getMediaUrl } from '../services/api';
 import { formatDate, getErrorMessage } from '../utils/formatters';
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 3116503ab455dacf3908120fd4affa9acc9b349e
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState('');
   const loadAnnouncements = useCallback(async () => { setLoading(true); setError(''); try { const response = await announcementService.list({ limit: 100 }); setAnnouncements(response.data.announcements); } catch (requestError) { setError(getErrorMessage(requestError)); } finally { setLoading(false); } }, []);
