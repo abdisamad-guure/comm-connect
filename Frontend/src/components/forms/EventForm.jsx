@@ -7,6 +7,11 @@ function dateInputValue(value) {
   return value ? new Date(value).toISOString().slice(0, 10) : '';
 }
 
+
+
+
+
+
 export default function EventForm({ event, onSubmit, onCancel }) {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm({ defaultValues: { title: '', description: '', date: '', time: '', location: '' } });
   const [error, setError] = useState('');

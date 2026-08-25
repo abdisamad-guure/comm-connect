@@ -18,7 +18,8 @@ export default function AnnouncementForm({ announcement, onSubmit, onCancel }) {
   }
 
   
-  return <form className="space-y-4" onSubmit={handleSubmit(submit)} noValidate>
+  
+    return <form className="space-y-4" onSubmit={handleSubmit(submit)} noValidate>
     {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
     <div><label className="label" htmlFor="announcement-title">Title</label><input id="announcement-title" className="input" {...register('title', { required: 'A title is required', minLength: { value: 3, message: 'Use at least 3 characters' } })} />{errors.title && <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>}</div>
     <div><label className="label" htmlFor="announcement-content">Message</label><textarea id="announcement-content" className="input" rows="6" {...register('content', { required: 'A message is required', minLength: { value: 3, message: 'Use at least 3 characters' } })} />{errors.content && <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>}</div>
