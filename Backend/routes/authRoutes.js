@@ -4,6 +4,9 @@ const upload = require('../middleware/uploadMiddleware');
 const controller = require('../controllers/authController');
 const { registerValidator, loginValidator, profileValidator } = require('../validators/authValidators');
 
+
+
+
 const router = express.Router();
 
 router.post('/register', registerValidator, controller.register);
