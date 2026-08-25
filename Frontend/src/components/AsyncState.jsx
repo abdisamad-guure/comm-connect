@@ -1,5 +1,7 @@
 import { FiAlertCircle, FiInbox, FiLoader } from 'react-icons/fi';
 
+
+
 export function LoadingState({ label = 'Loading...' }) {
   return (
     <div className="flex min-h-40 items-center justify-center gap-3 rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-slate-500">
